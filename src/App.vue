@@ -31,34 +31,19 @@ const renderers = [
 
 const schema = {
   properties: {
-    name: {
-      type: "string",
-      minLength: 1,
-      description: "The task's name"
-    },
-    description: {
-      title: "Long Description",
-      type: "string",
-    },
-    done: {
-      type: "boolean",
-    },
-    dueDate: {
-      type: "string",
-      format: "date",
-      description: "The task's due date"
-    },
-    rating: {
-      type: "integer",
-      maximum: 5,
-    },
-    recurrence: {
-      type: "string",
-      enum: ["Never", "Daily", "Weekly", "Monthly"]
-    },
-    recurrenceInterval: {
-      type: "integer",
-      description: "Days until recurrence"
+    names: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          firstName: {
+            type: "string",
+          },
+          lastName: {
+            type: "string",
+          },
+        }
+      },
     },
   },
 };
@@ -71,42 +56,10 @@ const uischema = {
       elements: [
         {
           type: "Control",
-          scope: "#/properties/name",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/description",
-          options: {
-            multi: true,
-          }
-        },
-        {
-          type: "Control",
-          scope: "#/properties/done",
+          scope: "#/properties/names"
         },
       ],
-    },
-    {
-      type: "VerticalLayout",
-      elements: [
-        {
-          type: "Control",
-          scope: "#/properties/dueDate",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/rating",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/recurrence",
-        },
-        {
-          type: "Control",
-          scope: "#/properties/recurrenceInterval",
-        },
-      ],
-    },
+    }
   ],
 };
 
